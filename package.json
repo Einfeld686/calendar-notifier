@@ -1,0 +1,41 @@
+{
+  "name": "calendar-notifier",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.5.0"
+  },
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "build": "rm -rf build && tsc -p tsconfig.json",
+    "start": "node build/src/server.js",
+    "crawl": "tsx src/cli/crawl.ts",
+    "crawl:due": "tsx src/cli/crawl-due.ts",
+    "worker": "tsx src/cli/worker.ts",
+    "seed": "tsx src/cli/seed.ts",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.1017.0",
+    "cheerio": "^1.2.0",
+    "cookie-parser": "^1.4.7",
+    "express": "^5.2.1",
+    "luxon": "^3.7.2",
+    "pg": "^8.20.0",
+    "robots-parser": "^3.0.1"
+  },
+  "devDependencies": {
+    "@types/cookie-parser": "^1.4.10",
+    "@types/express": "^5.0.5",
+    "@types/luxon": "^3.7.1",
+    "@types/node": "^24.10.1",
+    "@types/pg": "^8.20.0",
+    "@types/supertest": "^6.0.3",
+    "pg-mem": "^3.0.14",
+    "supertest": "^7.2.2",
+    "tsx": "^4.20.6",
+    "typescript": "^5.9.3",
+    "vitest": "^4.1.1"
+  }
+}

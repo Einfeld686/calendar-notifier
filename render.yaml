@@ -1,0 +1,43 @@
+services:
+  - type: web
+    name: calendar-notifier
+    runtime: node
+    plan: starter
+    autoDeploy: true
+    healthCheckPath: /healthz
+    buildCommand: npm ci && npm run build
+    startCommand: npm run start
+    envVars:
+      - key: NODE_VERSION
+        value: 22
+      - key: NODE_ENV
+        value: production
+      - key: APP_DB_BACKEND
+        value: postgres
+      - key: APP_STORAGE_BACKEND
+        value: s3
+      - key: DATABASE_URL
+        fromDatabase:
+          name: calendar-notifier-db
+          property: connectionString
+      - key: BASE_URL
+        sync: false
+      - key: ADMIN_USER
+        sync: false
+      - key: ADMIN_PASSWORD
+        sync: false
+      - key: REVIEWER_LABEL
+        value: operator
+      - key: S3_ENDPOINT
+        sync: false
+      - key: S3_REGION
+        value: auto
+      - key: S3_BUCKET
+        sync: false
+      - key: S3_ACCESS_KEY_ID
+        sync: false
+      - key: S3_SECRET_ACCESS_KEY
+        sync: false
+databases:
+  - name: calendar-notifier-db
+    plan: starter
